@@ -1,0 +1,66 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmaay4khmbkb0"]
+
+[ext_resource type="Texture2D" uid="uid://dt5lqg5vx5w1q" path="res://Art for gay i mean game/Placeholder man move.png" id="1_icwdp"]
+[ext_resource type="Script" uid="uid://d3yttfjo7ms5r" path="res://Scripts/uhhhhj.gd" id="1_utqt3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icwdp"]
+radius = 20.0
+height = 78.0
+
+[sub_resource type="Animation" id="Animation_vq1jg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_utqt3"]
+resource_name = "Walkingtest"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4, 0.466667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0o8hg"]
+_data = {
+&"RESET": SubResource("Animation_vq1jg"),
+&"Walkingtest": SubResource("Animation_utqt3")
+}
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(665, 328)
+script = ExtResource("1_utqt3")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 9)
+shape = SubResource("CapsuleShape2D_icwdp")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_icwdp")
+hframes = 8
+frame = 1
+
+[node name="PlaceholderCharaterPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+libraries = {
+&"": SubResource("AnimationLibrary_0o8hg")
+}
