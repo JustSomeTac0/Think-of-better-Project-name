@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmaay4khmbkb0"]
+[gd_scene load_steps=9 format=3 uid="uid://cmaay4khmbkb0"]
 
 [ext_resource type="Texture2D" uid="uid://dt5lqg5vx5w1q" path="res://Art for gay i mean game/Placeholder man move.png" id="1_icwdp"]
 [ext_resource type="Script" uid="uid://d3yttfjo7ms5r" path="res://Scripts/uhhhhj.gd" id="1_utqt3"]
+[ext_resource type="Script" uid="uid://c447glo2j30tu" path="res://Scripts/camera_2d.gd" id="3_vq1jg"]
+[ext_resource type="Texture2D" uid="uid://rrypjg4vknjd" path="res://Art for gay i mean game/level1Backgorund.png" id="4_0o8hg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icwdp"]
 radius = 20.0
@@ -45,22 +47,37 @@ _data = {
 &"Walkingtest": SubResource("Animation_utqt3")
 }
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
-position = Vector2(665, 328)
-script = ExtResource("1_utqt3")
-metadata/_edit_group_ = true
+[node name="IDK" type="Node"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -1139.0
+offset_top = -805.0
+offset_right = 2299.0
+offset_bottom = 1432.0
+texture = ExtResource("4_0o8hg")
+stretch_mode = 1
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(615, 262)
+script = ExtResource("1_utqt3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 position = Vector2(-3, 9)
 shape = SubResource("CapsuleShape2D_icwdp")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="CharacterBody2D"]
 texture_filter = 1
 texture = ExtResource("1_icwdp")
 hframes = 8
 frame = 1
 
-[node name="PlaceholderCharaterPlayer" type="AnimationPlayer" parent="PlayerSprite"]
+[node name="PlaceholderCharaterPlayer" type="AnimationPlayer" parent="CharacterBody2D/PlayerSprite"]
 libraries = {
 &"": SubResource("AnimationLibrary_0o8hg")
 }
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(-3, 10)
+editor_draw_screen = false
+script = ExtResource("3_vq1jg")
