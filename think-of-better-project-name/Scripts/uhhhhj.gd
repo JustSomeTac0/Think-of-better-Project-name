@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var speed = 400
 
+
+
 func get_input():
 	var input_direction = Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown") #Get all of the directons
 	velocity = input_direction * speed #make Velocity
@@ -23,4 +25,5 @@ func get_input():
 func _physics_process(delta): #physics
 	get_input()
 	move_and_slide()
+	
 	

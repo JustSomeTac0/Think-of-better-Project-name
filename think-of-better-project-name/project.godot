@@ -16,6 +16,10 @@ run/main_scene="res://Scenes/thefirtstest.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Placeholder things/icon.svg"
 
+[autoload]
+
+globalShit="*res://Scripts/bitchAssGlobalShit.gd"
+
 [display]
 
 window/size/viewport_width=1200
@@ -46,6 +50,14 @@ MoveDown={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
 ]
 }
+
+[layer_names]
+
+2d_physics/layer_1="PlayerLayer"
+2d_physics/layer_2="Hand Layer"
+2d_physics/layer_3="Object Layer"
+2d_physics/layer_4="Wall layer"
+2d_physics/layer_5="Badpeople layer"
 
 [rendering]
 

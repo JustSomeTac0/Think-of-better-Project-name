@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://cmaay4khmbkb0"]
+[gd_scene load_steps=13 format=3 uid="uid://cmaay4khmbkb0"]
 
 [ext_resource type="Texture2D" uid="uid://dt5lqg5vx5w1q" path="res://Art for gay i mean game/Placeholder/Placeholder man move.png" id="1_icwdp"]
 [ext_resource type="Script" uid="uid://d3yttfjo7ms5r" path="res://Scripts/uhhhhj.gd" id="1_utqt3"]
 [ext_resource type="Script" uid="uid://c447glo2j30tu" path="res://Scripts/camera_2d.gd" id="3_vq1jg"]
 [ext_resource type="Texture2D" uid="uid://rrypjg4vknjd" path="res://Art for gay i mean game/Level assist/level1Backgorund.png" id="4_0o8hg"]
 [ext_resource type="Texture2D" uid="uid://o2lwl25ivg1p" path="res://Placeholder things/placeHolderGround.png" id="5_5uh5p"]
+[ext_resource type="Script" uid="uid://ce5hv0iv01331" path="res://Scripts/handScript.gd" id="5_l632r"]
 
 [sub_resource type="Animation" id="Animation_vq1jg"]
 length = 0.001
@@ -44,9 +45,11 @@ _data = {
 &"Walkingtest": SubResource("Animation_utqt3")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_icwdp"]
-radius = 20.0
-height = 70.9783
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5uh5p"]
+radius = 18.0
+height = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uh5p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0o8hg"]
 size = Vector2(3437, 71.7573)
@@ -54,6 +57,7 @@ size = Vector2(3437, 71.7573)
 [node name="IDK" type="Node"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
 texture_filter = 1
 offset_left = -1165.0
 offset_top = -830.0
@@ -62,35 +66,68 @@ offset_bottom = 1407.0
 texture = ExtResource("4_0o8hg")
 stretch_mode = 1
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="YourShitter" type="CharacterBody2D" parent="."]
+z_index = 2
 position = Vector2(615, 262)
+collision_mask = 29
+floor_constant_speed = true
 script = ExtResource("1_utqt3")
 
-[node name="PlayerSprite" type="Sprite2D" parent="CharacterBody2D"]
+[node name="PlayerSprite" type="Sprite2D" parent="YourShitter"]
 texture_filter = 1
 texture = ExtResource("1_icwdp")
 hframes = 8
 frame = 1
 
-[node name="PlaceholderCharaterPlayer" type="AnimationPlayer" parent="CharacterBody2D/PlayerSprite"]
+[node name="PlaceholderCharaterPlayer" type="AnimationPlayer" parent="YourShitter/PlayerSprite"]
 libraries = {
 &"": SubResource("AnimationLibrary_0o8hg")
 }
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(-3, -14)
-scale = Vector2(1, 0.929862)
-shape = SubResource("CapsuleShape2D_icwdp")
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="YourShitter"]
 position = Vector2(-3, 10)
 editor_draw_screen = false
 script = ExtResource("3_vq1jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YourShitter"]
+position = Vector2(-3, 8)
+shape = SubResource("CapsuleShape2D_5uh5p")
+
+[node name="Hand" type="CharacterBody2D" parent="YourShitter"]
+show_behind_parent = true
+position = Vector2(-3, 8)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("5_l632r")
+
+[node name="HandCollision" type="CollisionShape2D" parent="YourShitter/Hand"]
+position = Vector2(47, -0.000216523)
+rotation = 1.57079
+scale = Vector2(1.4, 1.4)
+shape = SubResource("CircleShape2D_5uh5p")
+
+[node name="HandSprite" type="Sprite2D" parent="YourShitter/Hand"]
+position = Vector2(47, -0.000217477)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("5_5uh5p")
 
 [node name="Boarder" type="Node2D" parent="."]
 position = Vector2(461, 1345)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Boarder"]
+collision_layer = 8
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boarder/StaticBody2D"]
+position = Vector2(99, -2215)
+shape = SubResource("RectangleShape2D_0o8hg")
+one_way_collision_margin = 128.0
+metadata/_edit_group_ = true
+
+[node name="PlaceHolderGround3" type="Sprite2D" parent="Boarder/StaticBody2D/CollisionShape2D2"]
+position = Vector2(0, -5)
+rotation = -1.57079
+scale = Vector2(0.9, 36.3)
+texture = ExtResource("5_5uh5p")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Boarder/StaticBody2D"]
 position = Vector2(1843, -1505)
@@ -120,22 +157,9 @@ rotation = 1.57079
 scale = Vector2(1, 22.7)
 texture = ExtResource("5_5uh5p")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boarder/StaticBody2D"]
-position = Vector2(99, -2215)
-shape = SubResource("RectangleShape2D_0o8hg")
-one_way_collision_margin = 128.0
-metadata/_edit_group_ = true
-
-[node name="PlaceHolderGround3" type="Sprite2D" parent="Boarder/StaticBody2D/CollisionShape2D2"]
-position = Vector2(0, -5)
-rotation = -1.57079
-scale = Vector2(0.9, 36.3)
-texture = ExtResource("5_5uh5p")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boarder/StaticBody2D"]
 physics_interpolation_mode = 2
 position = Vector2(99, 95)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0o8hg")
 one_way_collision_margin = 0.0
 metadata/_edit_group_ = true
