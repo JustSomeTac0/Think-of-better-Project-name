@@ -13,7 +13,7 @@ config_version=5
 config/name="Think of better project name"
 config/description="Make cool shit"
 run/main_scene="res://Scenes/thefirtstest.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://Placeholder things/icon.svg"
 
 [autoload]
@@ -41,13 +41,18 @@ MoveLeft={
 ]
 }
 MoveUp={
-"deadzone": 0.2,
+"deadzone": 0.0,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"location":0,"echo":false,"script":null)
 ]
 }
 MoveDown={
-"deadzone": 0.2,
+"deadzone": 0.0,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":83,"key_label":0,"unicode":115,"location":0,"echo":false,"script":null)
+]
+}
+Dash={
+"deadzone": 0.0,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 ]
 }
 
@@ -64,3 +69,10 @@ MoveDown={
 textures/canvas_textures/default_texture_filter=0
 environment/defaults/default_clear_color=Color(0.304534, 0.299022, 0.294295, 1)
 2d/snap/snap_2d_transforms_to_pixel=true
+
+[shader_globals]
+
+value={
+"type": "int",
+"value": 0
+}
